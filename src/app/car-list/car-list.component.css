@@ -1,0 +1,19 @@
+.table-cars {
+    margin: 20px auto;
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px
+}
+
+.head-table-cars {
+    background: #bfbfbf
+}
+
+.head-table-cars:hover {
+    cursor: pointer
+}
+
+.table-cell {
+    padding: 5px 15px;
+    text-align: center
+}

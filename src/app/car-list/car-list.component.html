@@ -1,0 +1,16 @@
+<table class="table-cars">
+  <tr class="head-table-cars">
+    <th class="head-table-cell">Brand</th>
+    <th class="head-table-cell">Model</th>
+    <th class="head-table-cell">Year</th>
+    <th class="head-table-cell">Img</th>
+  </tr>
+  <tr *ngFor="let car of cars" (click)="gotoCarItem(car)">
+    <td class="table-cell">{{car.brand}}</td>
+    <td class="table-cell">{{car.model}}</td>
+    <td class="table-cell">{{car.year}}</td>
+    <td class="table-cell">{{car.img}}</td>
+  </tr>
+</table>
+
+<button type="button" (click)="gotoAddCar()">Add Car</button>

@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+    <p>
+        <input type="text" placeholder="Brand" formControlName="brand">
+    </p>
+    <p>
+        <input type="text" placeholder="Model" formControlName="model">
+    </p>
+    <p>
+        <input type="text" placeholder="Year" formControlName="year">
+    </p>
+    <p>
+        <input type="text" placeholder="Img" formControlName="img">
+    </p>
+    <p>
+        <button (click)="addCar()">Add car</button>
+    </p>
+</form>
