@@ -12,8 +12,7 @@ import { Car } from '../interfaces/car';
     providers: [TransportDataService]
 })
 export class CarListComponent implements OnInit {
-    public cars: Array<Car> = []
-    public choiseCar: 'Car';
+    public cars: Array<Car> = [];
 
     constructor(private transportDataService: TransportDataService, private router: Router) {
 
@@ -27,12 +26,14 @@ export class CarListComponent implements OnInit {
         this.transportDataService.getCars().subscribe(data => {
             for (let i = 0; i < data.length; i++) {
                 this.cars[i] = {
+                    id: data[i].id,
                     brand: data[i].brand,
                     model: data[i].model,
                     year: data[i].year,
                     img: data[i].img
                 };
             }
+            return this.cars;
         });
     }
 
@@ -40,9 +41,5 @@ export class CarListComponent implements OnInit {
         this.router.navigateByUrl('add-car');
     }
 
-    public gotoCarItem(car) {
-        console.log(car);
-        this.router.navigate(['car-item', car]);
-    }
 
 }

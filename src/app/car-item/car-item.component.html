@@ -1,1 +1,39 @@
-<button (click)="cons()">jnhbgvf</button>
+<mat-card class="container">
+    <mat-card-title class="title">
+        Edit Car
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content class="form">
+        <form [formGroup]="form">
+            <mat-form-field class="form-field">
+                <mat-select
+                        required
+                        placeholder="Brand"
+                        [formControlName]="'brand'"
+                        (selectionChange)="getModel($event)">
+                    <mat-option *ngFor="let brand of brands" [value]="brand">
+                        {{brand.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field">
+                <mat-select
+                        required
+                        placeholder="Model"
+                        [formControlName]="'model'">
+                    <mat-option *ngFor="let model of models" [value]="model">
+                        {{model}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field">
+                <input matInput required placeholder="Year" pattern="[0-9]{4}" formControlName="year">
+            </mat-form-field>
+            <mat-form-field class="form-field">
+                <input matInput type="url" required placeholder="Img" formControlName="img">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <button mat-button class="btn" (click)="updateCar()">Edit Car</button>
+    <button mat-button class="btn" (click)="deleteCar()">Delete Car</button>
+</mat-card>

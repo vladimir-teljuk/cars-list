@@ -1,0 +1,25 @@
+.container {
+    width: 40%;
+    margin: 2% auto;
+    align-content: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.form-field {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.btn {
+    width: 10%;
+    margin: 0 45%;
+}
+
+@media screen and (max-width: 1080px) {
+    .container {
+        width: 80%;
+    }
+}

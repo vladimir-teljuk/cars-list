@@ -6,7 +6,7 @@ export class UsersService {
   constructor() { }
 
   public SetUsers() {
-      localStorage.setItem('admin', 'admin');
+      localStorage.setItem('admin@admin.com', 'admin');
 
   }
 

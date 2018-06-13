@@ -1,16 +1,10 @@
-<table class="table-cars">
-  <tr class="head-table-cars">
-    <th class="head-table-cell">Brand</th>
-    <th class="head-table-cell">Model</th>
-    <th class="head-table-cell">Year</th>
-    <th class="head-table-cell">Img</th>
-  </tr>
-  <tr *ngFor="let car of cars" (click)="gotoCarItem(car)">
-    <td class="table-cell">{{car.brand}}</td>
-    <td class="table-cell">{{car.model}}</td>
-    <td class="table-cell">{{car.year}}</td>
-    <td class="table-cell">{{car.img}}</td>
-  </tr>
-</table>
-
-<button type="button" (click)="gotoAddCar()">Add Car</button>
+<mat-card class="container">
+    <mat-card-title class="title">
+        Cars
+    </mat-card-title>
+        <mat-card class="item-card" *ngFor="let car of cars" [routerLink]="['/car-item', car.id]">
+            <mat-card-content class="item-car-field">{{car.brand}} {{car.model}}. Year: {{car.year}}</mat-card-content>
+            <div class="img-container"><img mat-card-image class="item-car-img" src="{{car.img}}"></div>
+        </mat-card>
+    <button mat-button class="btn-add-car" (click)="gotoAddCar()">Add Car</button>
+</mat-card>

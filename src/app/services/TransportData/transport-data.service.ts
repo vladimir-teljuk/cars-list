@@ -10,11 +10,22 @@ export class TransportDataService {
     }
 
     public getCars(): Observable<any> {
-        return this.http.get(`api/cars`);
+        return this.http.get(`api/cars/`);
     }
 
+    public getCar(id): Observable<any> {
+        return this.http.get('api/cars/' + id);
+    }
     public addCar(car: Car): Observable<any> {
-        return this.http.post('`api/cars', car);
+        return this.http.post('api/cars/', car);
+    }
+
+    public updateCar(car: Car, id?): Observable<any> {
+        return this.http.post('api/cars/' + '' || id, car);
+    }
+
+    public deleteCar(id): Observable<any> {
+        return this.http.delete('api/cars/' + id);
     }
 
 }
