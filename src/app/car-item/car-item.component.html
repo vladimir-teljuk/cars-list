@@ -11,7 +11,7 @@
                         placeholder="Brand"
                         [formControlName]="'brand'"
                         (selectionChange)="getModel($event)"
-                        [(value)]="car.brand">
+                        [value]="car.brand">
                     <mat-option *ngFor="let brand of brands" [value]="brand">
                         {{brand.name}}
                     </mat-option>
@@ -22,7 +22,7 @@
                         required
                         placeholder="Model"
                         [formControlName]="'model'"
-                        [(value)]="car.model">
+                        [value]="car.model">
                     <mat-option *ngFor="let model of models" [value]="model">
                         {{model}}
                     </mat-option>
