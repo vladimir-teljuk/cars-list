@@ -50,11 +50,12 @@ export class CarItemComponent implements OnInit {
     public updateCar(): void {
         this.car = {
             id: this.car.id,
-            brand: this.form.controls['brand'].value.name,
-            model: this.form.controls['model'].value,
-            year: this.form.controls['year'].value,
-            img: this.form.controls['img'].value
+            brand: this.form.controls['brand'].value.name || this.car.brand,
+            model: this.form.controls['model'].value || this.car.model,
+            year: this.form.controls['year'].value || this.car.year,
+            img: this.form.controls['img'].value || this.car.img
         };
+        console.log(this.form.controls['img']);
         this.transport.updateCar(this.car, this.car.id).subscribe(data => {
             this.car = data;
             return this.car;
@@ -73,26 +74,11 @@ export class CarItemComponent implements OnInit {
         return this.car;
     }
 
-    // public updateCar() {
-    //     const car: Car = {
-    //         brand: this.form.controls['brand'].value.name,
-    //         model: this.form.controls['model'].value,
-    //         year: this.form.controls['year'].value,
-    //         img: this.form.controls['img'].value
-    //     };
-    //     this.transport.updateCar(car, this.car.id).subscribe();
-    //     console.log(this.form.controls['brand']);
-    //     this.router.navigateByUrl('car-list');
-    //
-    // }
-
     private getBrand() {
         this.transfer.getAllCarList().subscribe(data => {
             for (let i = 0; i < data.length; i++) {
                 this.brands[i] = data[i];
             }
-            ;
-            console.log(this.brands);
             return this.brands;
         });
         return this.brands;
@@ -108,7 +94,6 @@ export class CarItemComponent implements OnInit {
                 this.models = this.brands[i].models;
             }
         }
-        console.log(this.models);
         return this.models;
     }
 
