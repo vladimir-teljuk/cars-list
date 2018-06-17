@@ -1,6 +1,6 @@
 <mat-card class="container">
     <mat-card-title class="title">
-        Edit {{car.brand}} {{car.model}}
+        Edit Car
     </mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content class="form">
@@ -8,11 +8,11 @@
             <mat-form-field class="form-field">
                 <mat-select
                         required
+                        [(ngModel)]="car.brand"
                         placeholder="Brand"
                         [formControlName]="'brand'"
-                        (selectionChange)="getModel($event)"
-                        [value]="car.brand">
-                    <mat-option *ngFor="let brand of brands" [value]="brand">
+                        (selectionChange)="getModels($event)">
+                    <mat-option *ngFor="let brand of brands" [value]="brand.name">
                         {{brand.name}}
                     </mat-option>
                 </mat-select>
@@ -20,6 +20,7 @@
             <mat-form-field class="form-field">
                 <mat-select
                         required
+                        [(ngModel)]="car.model"
                         placeholder="Model"
                         [formControlName]="'model'"
                         [value]="car.model">
@@ -29,12 +30,11 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="form-field">
-                <input matInput required placeholder="Year" pattern="[0-9]{4}" formControlName="year"
-                       [value]="car.year">
+                <input matInput [(ngModel)]="car.year" required placeholder="Year" pattern="[0-9]{4}" formControlName="year">
             </mat-form-field>
             <mat-form-field class="form-field">
-                <input matInput type="url" required placeholder="URL pass to the picture" formControlName="img"
-                       [value]="car.img">
+                <input matInput type="url" [(ngModel)]="car.img" required placeholder="URL pass to the picture"
+                       formControlName="img">
             </mat-form-field>
         </form>
     </mat-card-content>

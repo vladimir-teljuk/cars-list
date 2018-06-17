@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Car} from '../interfaces/car';
 import {TransportDataService} from '../services/TransportData/transport-data.service';
-import {TransferBrandService} from '../services/transfer-brand/transfer-brand.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {TransferBrandService} from '../services/transfer-brand/transfer-brand.service';
 
 @Component({
     selector: 'app-car-item',
@@ -48,30 +48,14 @@ export class CarItemComponent implements OnInit {
     }
 
     public updateCar(): void {
-        this.car = {
-            id: this.car.id,
-            brand: this.form.controls['brand'].value.name || this.car.brand,
-            model: this.form.controls['model'].value || this.car.model,
-            year: this.form.controls['year'].value || this.car.year,
-            img: this.form.controls['img'].value || this.car.img
-        };
-        console.log(this.form.controls['img']);
-        this.transport.updateCar(this.car, this.car.id).subscribe(data => {
-            this.car = data;
-            return this.car;
-        });
         console.log(this.car);
+        this.transport.updateCar(this.car, this.car.id).subscribe();
         this.router.navigateByUrl('car-list');
     }
 
-    public deleteCar(): Car {
-        this.transport.deleteCar(+this.selectCar.snapshot.params['id']).subscribe(data => {
-            this.car = data;
-            console.log(this.car);
-            return this.car;
-        });
+    public deleteCar(): void {
+        this.transport.deleteCar(+this.selectCar.snapshot.params['id']).subscribe();
         this.router.navigateByUrl('car-list');
-        return this.car;
     }
 
     private getBrand() {
@@ -79,16 +63,26 @@ export class CarItemComponent implements OnInit {
             for (let i = 0; i < data.length; i++) {
                 this.brands[i] = data[i];
             }
+            this.getCarModel(this.car.brand);
             return this.brands;
         });
         return this.brands;
     }
 
-    public getModel(chioseBrand) {
-        console.log(chioseBrand['value'].name);
+    private getCarModel(chioseBrand) {
         for (let i = 0; i < this.brands.length; i++) {
-            if (this.brands[i].name === chioseBrand['value'].name) {
-
+            if (this.brands[i].name === chioseBrand) {
+                console.log(this.brands[i].name,
+                    this.brands[i].models);
+                this.models = this.brands[i].models;
+            }
+        }
+        return this.models;
+    }
+    public getModels(chioseBrand) {
+        console.log(chioseBrand);
+        for (let i = 0; i < this.brands.length; i++) {
+            if (this.brands[i].name === chioseBrand['value']) {
                 console.log(this.brands[i].name,
                     this.brands[i].models);
                 this.models = this.brands[i].models;
