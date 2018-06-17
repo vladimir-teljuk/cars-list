@@ -20,8 +20,8 @@ export class TransportDataService {
         return this.http.post('api/cars/', car);
     }
 
-    public updateCar(car: Car, id?): Observable<any> {
-        return this.http.post('api/cars/' + '' || id, car);
+    public updateCar(car: Car, id): Observable<any> {
+        return this.http.post('api/cars/' + id, car);
     }
 
     public deleteCar(id): Observable<any> {
