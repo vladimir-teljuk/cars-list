@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth/auth.service';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -13,22 +13,28 @@ export class LoginComponent implements OnInit {
 
     public email: string;
     public password: string;
+    returnUrl: string;
 
-    constructor(private auth: AuthService, private router: Router) {
+    constructor(private auth: AuthService,
+                private router: Router,
+                private route: ActivatedRoute) {
         this.auth = auth;
     }
 
     ngOnInit() {
+        this.auth.logout();
+
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
     }
 
     public login(): void {
-        const email = this.email.replace('@', '-');
-        this.auth.getUser(email, this.password).subscribe(data => {
-            if (email === data[0].login && this.password === data[0].password) {
-                this.router.navigateByUrl('car-list');
-            }
+        this.auth.login(this.email, this.password).subscribe(data => {
+            this.router.navigate([this.returnUrl]);
         });
+    }
+    public registration(): void {
+        this.router.navigateByUrl('registration');
     }
 
 }

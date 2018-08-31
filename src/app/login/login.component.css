@@ -13,9 +13,14 @@
     margin: 0 10%;
 }
 
-.btn-ok {
-    width: 10%;
-    margin: 0 45%;
+.btn {
+    display: inline-block;
+    width: 20%;
+    margin: 0 10%;
+}
+
+.or {
+    display: inline-block;
 }
 
 @media screen and (max-width: 1080px) {

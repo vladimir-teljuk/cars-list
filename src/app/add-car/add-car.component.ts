@@ -40,7 +40,7 @@ export class AddCarComponent implements OnInit {
             img: this.form.controls['img'].value
         };
         this.transport.addCar(car).subscribe();
-        console.log( this.form.controls['brand']);
+        console.log(car);
         this.router.navigateByUrl('car-list');
 
     }
@@ -50,7 +50,6 @@ export class AddCarComponent implements OnInit {
             for (let i = 0; i < data.length; i++) {
                 this.brands[i] = data[i];
             }
-            ;
             console.log(this.brands);
             return this.brands;
         });
@@ -63,7 +62,7 @@ export class AddCarComponent implements OnInit {
             if (this.brands[i].name === chioseBrand['value'].name) {
 
                 console.log(this.brands[i].name,
-                            this.brands[i].models);
+                    this.brands[i].models);
                 this.models = this.brands[i].models;
             }
         }

@@ -24,6 +24,7 @@ export class CarListComponent implements OnInit {
 
     private getCarList() {
         this.transportDataService.getCars().subscribe(data => {
+            console.log(data);
             for (let i = 0; i < data.length; i++) {
                 this.cars[i] = {
                     id: data[i].id,
