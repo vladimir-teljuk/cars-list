@@ -4,12 +4,14 @@ import {TransportDataService} from '../services/TransportData/transport-data.ser
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {TransferBrandService} from '../services/transfer-brand/transfer-brand.service';
+import {AuthService} from '../services/auth/auth.service';
+
 
 @Component({
     selector: 'app-car-item',
     templateUrl: './car-item.component.html',
     styleUrls: ['./car-item.component.css'],
-    providers: [TransportDataService, TransferBrandService],
+    providers: [TransportDataService, TransferBrandService, AuthService],
 
 })
 export class CarItemComponent implements OnInit {
@@ -30,7 +32,8 @@ export class CarItemComponent implements OnInit {
                 private router: Router,
                 private transfer: TransferBrandService,
                 private selectCar: ActivatedRoute,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                private auth: AuthService) {
     }
 
     ngOnInit() {
@@ -50,12 +53,12 @@ export class CarItemComponent implements OnInit {
     public updateCar(): void {
         console.log(this.car);
         this.transport.updateCar(this.car, this.car.id).subscribe();
-        this.router.navigateByUrl('car-list');
+        this.router.navigateByUrl('/');
     }
 
     public deleteCar(): void {
         this.transport.deleteCar(+this.selectCar.snapshot.params['id']).subscribe();
-        this.router.navigateByUrl('car-list');
+        this.router.navigateByUrl('/');
     }
 
     private getBrand() {
@@ -79,6 +82,7 @@ export class CarItemComponent implements OnInit {
         }
         return this.models;
     }
+
     public getModels(chioseBrand) {
         console.log(chioseBrand);
         for (let i = 0; i < this.brands.length; i++) {
@@ -98,6 +102,9 @@ export class CarItemComponent implements OnInit {
             year: '',
             img: ''
         });
+    }
+    public logout(): void {
+        this.auth.logout();
     }
 
 }

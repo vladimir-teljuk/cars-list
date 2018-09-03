@@ -4,13 +4,14 @@ import {Car} from '../interfaces/car';
 import {TransportDataService} from '../services/TransportData/transport-data.service';
 import {TransferBrandService} from '../services/transfer-brand/transfer-brand.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../services/auth/auth.service';
 
 
 @Component({
     selector: 'app-add-car',
     templateUrl: './add-car.component.html',
     styleUrls: ['./add-car.component.css'],
-    providers: [TransportDataService, TransferBrandService, ReactiveFormsModule],
+    providers: [TransportDataService, TransferBrandService, ReactiveFormsModule, AuthService],
 })
 
 export class AddCarComponent implements OnInit {
@@ -22,7 +23,8 @@ export class AddCarComponent implements OnInit {
     constructor(private transport: TransportDataService,
                 private transfer: TransferBrandService,
                 private router: Router,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                private auth: AuthService) {
     }
 
     ngOnInit() {
@@ -41,7 +43,7 @@ export class AddCarComponent implements OnInit {
         };
         this.transport.addCar(car).subscribe();
         console.log(car);
-        this.router.navigateByUrl('car-list');
+        this.router.navigateByUrl('/');
 
     }
 
@@ -77,6 +79,10 @@ export class AddCarComponent implements OnInit {
             year: '',
             img: ''
         });
+    }
+
+    public logout(): void {
+        this.auth.logout();
     }
 
 }

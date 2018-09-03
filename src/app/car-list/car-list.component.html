@@ -2,9 +2,16 @@
     <mat-card-title class="title">
         Cars
     </mat-card-title>
+    <mat-card-content class="card-container">
         <mat-card class="item-card" *ngFor="let car of cars" [routerLink]="['/car-item', car.id]">
             <mat-card-content class="item-car-field">{{car.brand}} {{car.model}}. Year: {{car.year}}</mat-card-content>
             <div class="img-container"><img mat-card-image class="item-car-img" src="{{car.img}}"></div>
         </mat-card>
+    </mat-card-content>
     <button mat-raised-button class="btn-add-car" (click)="gotoAddCar()">Add Car</button>
+</mat-card>
+
+<mat-card>
+    <button mat-raised-button (click)="logout()">Logout</button>
+
 </mat-card>

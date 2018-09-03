@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TransportDataService } from '../services/TransportData/transport-data.service';
+import {AuthService} from '../services/auth/auth.service';
 
 import { Car } from '../interfaces/car';
 
@@ -9,12 +10,14 @@ import { Car } from '../interfaces/car';
     selector: 'app-car-list',
     templateUrl: './car-list.component.html',
     styleUrls: ['./car-list.component.css'],
-    providers: [TransportDataService]
+    providers: [TransportDataService, AuthService]
 })
 export class CarListComponent implements OnInit {
     public cars: Array<Car> = [];
 
-    constructor(private transportDataService: TransportDataService, private router: Router) {
+    constructor(private transportDataService: TransportDataService,
+                private router: Router,
+                private auth: AuthService) {
 
     }
 
@@ -42,5 +45,8 @@ export class CarListComponent implements OnInit {
         this.router.navigateByUrl('add-car');
     }
 
+    public logout(): void {
+        this.auth.logout();
+    }
 
 }
