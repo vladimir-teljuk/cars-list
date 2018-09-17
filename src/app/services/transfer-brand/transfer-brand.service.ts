@@ -16,4 +16,9 @@ export class TransferBrandService {
 
   }
 
+    public delModels(name): Observable<any> {
+        return this.http.delete('api/brands/', name);
+
+    }
+
 }
